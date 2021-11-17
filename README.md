@@ -1,6 +1,11 @@
 # data_format_converter
 Deep learning dataset format converter. Convert your dataset in coco, voc, yolo format to other formats.
 
+## Usage
+```
+python convert.py --input_format voc/yolo/coco --input_dir data_yolo --output_format voc/yolo/coco --output_dir data_coco --subset train --class_file classes.txt
+```
+
 ## YOLO
 Data structure of yolo format:
 
