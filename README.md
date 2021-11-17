@@ -46,22 +46,18 @@ Data structure of voc format:
      |--train.txt
      |--val.txt
 --JPEGImages
-  |--train
-     |--001.jpg
-     |--002.jpg
-  |--val
-     |--101.jpg
-     |--102.jpg
+   |--001.jpg
+   |--002.jpg
+   |--101.jpg
+   |--102.jpg
 --Annotations
-  |--train
-     |--001.xml
-     |--002.xml
-  |--val
-     |--101.xml
-     |--102.xml
+   |--001.xml
+   |--002.xml
+   |--101.xml
+   |--102.xml
 ```
 
-* **train.txt** and **val.txt** contain the filenames of train and val split, like this:
+* **train.txt** and **val.txt** contain the filenames of train and val split. One filename per line, without extension, like this:
 ```
 001
 002
