@@ -15,13 +15,13 @@ class VOCParser(Parser):
     def parse(self, src_dir, subset, class_file=None):
         src_img_dir = os.path.join(src_dir, 'JPEGImages')
         src_anno_dir = os.path.join(src_dir, 'Annotations')
-        src_list = open(os.path.join(src_dir, 'ImageSets', 'Main', subset + '.txt'), 'r')
+        src_list_file = os.path.join(src_dir, 'ImageSets', 'Main', subset + '.txt')
 
         if not os.path.exists(src_img_dir):
             raise FileNotFoundError
         if not os.path.exists(src_anno_dir):
             raise FileNotFoundError
-        if not os.path.exists(src_list):
+        if not os.path.exists(src_list_file):
             raise FileNotFoundError
         if not os.path.exists(class_file):
             raise FileNotFoundError(class_file)
@@ -33,6 +33,7 @@ class VOCParser(Parser):
             class_names = [name.strip() for name in names]
         # print("classes:", class_names)
 
+        src_list = open(src_list_file, 'r')
         ir = IR(class_names)    # intermediate representation
 
         while True:

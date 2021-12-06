@@ -12,19 +12,15 @@ Data structure of yolo format:
 ```
 --classes.txt
 --train
-  |--images
-     |--001.jpg
-     |--002.jpg
-  |--labels
-     |--001.txt
-     |--002.txt
+   |--001.jpg
+   |--001.txt
+   |--002.jpg
+   |--002.txt
 --val
-  |--images
-     |--101.jpg
-     |--102.jpg
-  |--labels
-     |--101.txt
-     |--102.txt
+   |--101.jpg
+   |--101.txt
+   |--102.jpg
+   |--102.txt
 ```
 
 * **classes.txt** contains names of classes. One class name per line,

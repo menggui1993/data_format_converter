@@ -13,8 +13,8 @@ class YOLOParser(Parser):
         super(YOLOParser, self).__init__()
 
     def parse(self, src_dir, subset, class_file=None):
-        src_img_dir = os.path.join(src_dir, subset, 'images')
-        src_anno_dir = os.path.join(src_dir, subset, 'labels')
+        src_img_dir = os.path.join(src_dir, subset)
+        src_anno_dir = os.path.join(src_dir, subset)
 
         if not os.path.exists(src_img_dir):
             raise FileNotFoundError

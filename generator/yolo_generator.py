@@ -12,18 +12,22 @@ class YOLOGenerator(Generator):
         super(YOLOGenerator, self).__init__()
 
     def generate(self, ir, out_dir, subset):
-        out_img_dir = os.path.join(out_dir, subset, 'images')
-        out_anno_dir = os.path.join(out_dir, subset, 'labels')
+        out_img_dir = os.path.join(out_dir, subset)
+        out_anno_dir = os.path.join(out_dir, subset)
         out_class_file = os.path.join(out_dir, 'classes.txt')
+        out_list_file = os.path.join(out_dir, subset + ".txt")
 
-        os.makedirs(out_img_dir)
-        os.makedirs(out_anno_dir)
+        if not os.path.exists(out_img_dir):
+            os.makedirs(out_img_dir)
+        if not os.path.exists(out_anno_dir):
+            os.makedirs(out_anno_dir)
 
         # write class list
         with open(out_class_file, 'w') as f:
             for class_name in ir.class_names:
                 f.write(class_name + '\n')
         
+        out_list = open(out_list_file, 'w')
         for img_info in ir.img_lists:
             img_w, img_h = img_info[0]
             src_img_path = img_info[1]
@@ -42,4 +46,5 @@ class YOLOGenerator(Generator):
                     w /= img_w
                     h /= img_h
                     f.write('{:d} {:f} {:f} {:f} {:f}\n'.format(category, cx, cy, w, h))
-            
+            out_list.write(out_img_path + '\n')
+        out_list.close()
