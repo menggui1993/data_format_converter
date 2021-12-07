@@ -11,8 +11,10 @@ class COCOGenerator(Generator):
         out_img_dir = os.path.join(out_dir, 'images')
         out_anno_dir = os.path.join(out_dir, 'annotations')
 
-        os.makedirs(out_img_dir)
-        os.makedirs(out_anno_dir)
+        if not os.path.exists(out_img_dir):
+            os.makedirs(out_img_dir)
+        if not os.path.exists(out_anno_dir):
+            os.makedirs(out_anno_dir)
 
         coco_data = {'images': [], 'annotations': [], "categories": []}
 

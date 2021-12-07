@@ -19,9 +19,12 @@ class VOCGenerator(Generator):
         out_anno_dir = os.path.join(out_dir, 'Annotations')
         out_list_file = os.path.join(out_dir, 'ImageSets', 'Main', subset + '.txt')
 
-        os.makedirs(out_img_dir)
-        os.makedirs(out_anno_dir)
-        os.makedirs(os.path.join(out_dir, 'ImageSets', 'Main'))
+        if not os.path.exists(out_img_dir):
+            os.makedirs(out_img_dir)
+        if not os.path.exists(out_anno_dir):
+            os.makedirs(out_anno_dir)
+        if not os.path.exists(os.path.join(out_dir, 'ImageSets', 'Main')):
+            os.makedirs(os.path.join(out_dir, 'ImageSets', 'Main'))
 
         with open(out_list_file, 'w') as list_file:
             for img_info in ir.img_lists:
