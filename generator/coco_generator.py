@@ -1,6 +1,7 @@
 from generator.generator import Generator
 from ir import IR
 import os
+import shutil
 import json
 
 class COCOGenerator(Generator):
@@ -29,7 +30,10 @@ class COCOGenerator(Generator):
             bboxes = img_info[2]
             img_name = os.path.split(src_img_path)[-1]
             out_img_path = os.path.join(out_img_dir, img_name)
-            os.symlink(src_img_path, out_img_path)
+            if copy_img:
+                shutil.copyfile(src_img_path. out_img_path)
+            else:
+                os.symlink(src_img_path, out_img_path)
 
             img_data = {'file_name': img_name, 'id': img_count, 'height': img_h, 'width': img_w}
             coco_data['images'].append(img_data)

@@ -5,5 +5,5 @@ class Generator:
         pass
     
     @abstractmethod
-    def generate(self, ir, out_dir, subset):
+    def generate(self, ir, out_dir, subset, copy_img):
         pass

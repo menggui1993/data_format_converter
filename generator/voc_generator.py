@@ -1,6 +1,7 @@
 from generator.generator import Generator
 from ir import IR
 import os
+import shutil
 from xml.dom.minidom import Document
 
 def xywh2xyxy(x, y, w, h):
@@ -14,7 +15,7 @@ class VOCGenerator(Generator):
     def __init__(self):
         super(VOCGenerator, self).__init__()
     
-    def generate(self, ir, out_dir, subset):
+    def generate(self, ir, out_dir, subset, copy_img):
         out_img_dir = os.path.join(out_dir, 'JPEGImages')
         out_anno_dir = os.path.join(out_dir, 'Annotations')
         out_list_file = os.path.join(out_dir, 'ImageSets', 'Main', subset + '.txt')
@@ -34,7 +35,10 @@ class VOCGenerator(Generator):
                 img_name = os.path.split(src_img_path)[-1]
                 fname = os.path.splitext(img_name)[0]
                 out_img_path = os.path.join(out_img_dir, img_name)
-                os.symlink(src_img_path, out_img_path)
+                if copy_img:
+                    shutil.copyfile(src_img_path. out_img_path)
+                else:
+                    os.symlink(src_img_path, out_img_path)
                 list_file.write(fname + '\n')
 
                 anno_name = fname + '.xml'

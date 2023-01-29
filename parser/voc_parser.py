@@ -47,6 +47,7 @@ class VOCParser(Parser):
             root = tree.getroot()
             
             img_name = root.find('filename').text
+            # img_name = prefix + '.jpg'
             src_img_path = os.path.join(src_img_dir, img_name)
 
             size = root.find('size')

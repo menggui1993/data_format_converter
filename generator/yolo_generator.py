@@ -1,6 +1,7 @@
 from generator.generator import Generator
 from ir import IR
 import os
+import shutil
 
 def xywh2cxcywh(x, y, w, h):
     cx = x + w / 2
@@ -11,7 +12,7 @@ class YOLOGenerator(Generator):
     def __init__(self):
         super(YOLOGenerator, self).__init__()
 
-    def generate(self, ir, out_dir, subset):
+    def generate(self, ir, out_dir, subset, copy_img):
         out_img_dir = os.path.join(out_dir, subset)
         out_anno_dir = os.path.join(out_dir, subset)
         out_class_file = os.path.join(out_dir, 'classes.txt')
@@ -34,7 +35,10 @@ class YOLOGenerator(Generator):
             bboxes = img_info[2]
             img_name = os.path.split(src_img_path)[-1]
             out_img_path = os.path.join(out_img_dir, img_name)
-            os.symlink(src_img_path, out_img_path)
+            if copy_img:
+                shutil.copyfile(src_img_path. out_img_path)
+            else:
+                os.symlink(src_img_path, out_img_path)
 
             anno_name = os.path.splitext(img_name)[0] + '.txt'
             out_anno_path = os.path.join(out_anno_dir, anno_name)
