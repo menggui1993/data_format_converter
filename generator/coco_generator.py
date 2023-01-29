@@ -8,7 +8,7 @@ class COCOGenerator(Generator):
     def __init__(self):
         super(COCOGenerator, self).__init__()
     
-    def generate(self, ir, out_dir, subset):
+    def generate(self, ir, out_dir, subset, copy_img):
         out_img_dir = os.path.join(out_dir, 'images')
         out_anno_dir = os.path.join(out_dir, 'annotations')
 
@@ -31,7 +31,7 @@ class COCOGenerator(Generator):
             img_name = os.path.split(src_img_path)[-1]
             out_img_path = os.path.join(out_img_dir, img_name)
             if copy_img:
-                shutil.copyfile(src_img_path. out_img_path)
+                shutil.copyfile(src_img_path, out_img_path)
             else:
                 os.symlink(src_img_path, out_img_path)
 

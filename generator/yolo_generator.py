@@ -36,7 +36,7 @@ class YOLOGenerator(Generator):
             img_name = os.path.split(src_img_path)[-1]
             out_img_path = os.path.join(out_img_dir, img_name)
             if copy_img:
-                shutil.copyfile(src_img_path. out_img_path)
+                shutil.copyfile(src_img_path, out_img_path)
             else:
                 os.symlink(src_img_path, out_img_path)
 
